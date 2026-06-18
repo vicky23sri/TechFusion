@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="100%" height="100%">
+  <!-- Definition for drop shadows / filters -->
+  <defs>
+    <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Left Icon Area -->
+  <g transform="translate(90, 90)">
+    <!-- 8 Outer Compass Points (Gold) -->
+    <!-- N -->
+    <polygon points="0,-78 10,-55 -10,-55" fill="#E5A91D" />
+    <!-- S -->
+    <polygon points="0,78 10,55 -10,55" fill="#E5A91D" />
+    <!-- E -->
+    <polygon points="78,0 55,10 55,-10" fill="#E5A91D" />
+    <!-- W -->
+    <polygon points="-78,0 -55,10 -55,-10" fill="#E5A91D" />
+    <!-- NE -->
+    <polygon points="55,-55 48,-32 32,-48" fill="#E5A91D" />
+    <!-- NW -->
+    <polygon points="-55,-55 -48,-32 -32,-48" fill="#E5A91D" />
+    <!-- SE -->
+    <polygon points="55,55 48,32 32,48" fill="#E5A91D" />
+    <!-- SW -->
+    <polygon points="-55,55 -48,32 -32,48" fill="#E5A91D" />
+
+    <!-- Outer Gold Gear Ring -->
+    <circle cx="0" cy="0" r="55" fill="none" stroke="#E5A91D" stroke-width="6" />
+
+    <!-- Outer Inner Gap Circle (White Spacer) -->
+    <circle cx="0" cy="0" r="48" fill="#FFFFFF" />
+
+    <!-- Inner Circuit structure (Deep Teal/Blue) -->
+    <!-- Circular track -->
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#0B5675" stroke-width="4.5" />
+
+    <!-- Central Node -->
+    <circle cx="0" cy="0" r="11" fill="none" stroke="#0B5675" stroke-width="4.5" />
+    <circle cx="0" cy="0" r="4.5" fill="#0B5675" />
+
+    <!-- Radiating Cybernetic Traces -->
+    <!-- 1. North-Up (Direct vertical split) -->
+    <path d="M 0,-11 L 0,-25 M -6,-31 L 0,-25 L 6,-31" fill="none" stroke="#0B5675" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="-6" cy="-31" r="3" fill="#0B5675" />
+    <circle cx="6" cy="-31" r="3" fill="#0B5675" />
+
+    <!-- 2. North-East -->
+    <path d="M 7.7,-7.7 L 18.5,-18.5 L 30,-18.5" fill="none" stroke="#0B5675" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="30" cy="-18.5" r="3" fill="#0B5675" />
+
+    <!-- 3. East -->
+    <path d="M 11,0 L 26,0 M 32,-6 L 26,0 L 32,6" fill="none" stroke="#0B5675" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="32" cy="-6" r="3" fill="#0B5675" />
+    <circle cx="32" cy="6" r="3" fill="#0B5675" />
+
+    <!-- 4. South-East -->
+    <path d="M 7.7,7.7 L 22,22 L 22,31" fill="none" stroke="#0B5675" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="22" cy="31" r="3" fill="#0B5675" />
+
+    <!-- 5. South -->
+    <path d="M 0,11 L 0,26 M -6,32 L 0,26 L 6,32" fill="none" stroke="#0B5675" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="-6" cy="32" r="3" fill="#0B5675" />
+    <circle cx="6" cy="32" r="3" fill="#0B5675" />
+
+    <!-- 6. South-West -->
+    <path d="M -7.7,7.7 L -18.5,18.5 L -30,18.5" fill="none" stroke="#0B5675" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="-30" cy="18.5" r="3" fill="#0B5675" />
+
+    <!-- 7. West -->
+    <path d="M -11,0 L -25,0 M -31,-6 L -25,0 L -31,6" fill="none" stroke="#0B5675" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="-31" cy="-6" r="3" fill="#0B5675" />
+    <circle cx="-31" cy="6" r="3" fill="#0B5675" />
+
+    <!-- 8. North-West -->
+    <path d="M -7.7,-7.7 L -22,-22 L -22,-31" fill="none" stroke="#0B5675" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="-22" cy="-31" r="3" fill="#0B5675" />
+  </g>
+
+  <!-- Typography Area -->
+  <!-- Brand Name -->
+  <text x="190" y="96" font-family="'Outfit', 'Inter', sans-serif" font-size="52" font-weight="800" fill="#0B5675" letter-spacing="1.5">CHAKRONIX</text>
+  <!-- Subtitle -->
+  <text x="192" y="132" font-family="'Inter', system-ui, sans-serif" font-size="22" font-weight="400" fill="#1E293B" letter-spacing="0.5">Parav Group Of Company</text>
+</svg>
