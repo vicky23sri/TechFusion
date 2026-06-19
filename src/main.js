@@ -781,10 +781,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Enable hover-first expansion on accordion panels (click fallback for touch)
-  // Default: first panel is always active when nothing is hovered
+  // Enable hover-only expansion on accordion panels.
+  // Default: all panels stay collapsed until hovered.
   const accordionContainer = document.getElementById("chip-blueprint-container");
-  let defaultLayerId = "layer-die"; // first panel is default
 
   function activateLayer(layerId) {
     blueprintLayers.forEach((layer) => {
@@ -822,7 +821,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Set up bilateral triggers: left card hover/click controls accordion
+  // Set up hover triggers for linked cards and accordion panels.
   specCards.forEach((card) => {
     const targetLayer = card.getAttribute("data-highlight-layer");
 
@@ -830,15 +829,9 @@ document.addEventListener("DOMContentLoaded", () => {
       activateLayer(targetLayer);
     });
 
-    card.addEventListener("click", () => {
-      defaultLayerId = targetLayer;
-      specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
-      card.classList.add("active", "border-brand-teal/40", "bg-white");
-      activateLayer(targetLayer);
-    });
-
     card.addEventListener("mouseleave", () => {
-      activateLayer(defaultLayerId);
+      resetLayers();
+      specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
     });
   });
 
@@ -850,22 +843,19 @@ document.addEventListener("DOMContentLoaded", () => {
       activateLayer(layerId);
     });
 
-    // Click fallback for touch devices
-    layer.addEventListener("click", () => {
-      defaultLayerId = layerId;
-      activateLayer(layerId);
+    layer.addEventListener("mouseleave", () => {
+      resetLayers();
+      specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
     });
   });
 
-  // When mouse leaves the entire accordion container, revert to default
+  // When mouse leaves the entire accordion container, collapse every panel.
   if (accordionContainer) {
     accordionContainer.addEventListener("mouseleave", () => {
-      activateLayer(defaultLayerId);
+      resetLayers();
+      specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
     });
   }
-
-  // Initialize: activate the first panel by default
-  activateLayer(defaultLayerId);
 
 
   // ==========================================
@@ -1283,4 +1273,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-

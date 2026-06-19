@@ -61,15 +61,15 @@
           <span
             class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
         </a>
-        <a href="#apply"
-          class="nav-link relative text-[11px] font-mono tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors group py-1">
-          PROPOSAL
-          <span
-            class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-        </a>
         <a href="#faq"
           class="nav-link relative text-[11px] font-mono tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors group py-1">
           FAQ
+          <span
+            class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+        </a>
+        <a href="#apply"
+          class="nav-link relative text-[11px] font-mono tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors group py-1">
+          PROPOSAL
           <span
             class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
         </a>
@@ -121,13 +121,13 @@
           class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
           <span class="hover:text-brand-teal transition-colors">VALUES</span>
         </a>
-        <a href="#apply"
-          class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
-          <span class="hover:text-brand-teal transition-colors">PROPOSAL</span>
-        </a>
         <a href="#faq"
           class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
           <span class="hover:text-brand-teal transition-colors">FAQ</span>
+        </a>
+        <a href="#apply"
+          class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
+          <span class="hover:text-brand-teal transition-colors">PROPOSAL</span>
         </a>
       </nav>
       <div class="mt-auto w-full max-w-xs mx-auto border-t border-slate-200/60 pt-6 text-center flex flex-col gap-2">
@@ -140,7 +140,7 @@
     </div>
   </header>
 
-  <main class="w-full">
+  <main class="w-full flex flex-col">
 
     <!-- Premium Light-Theme Interactive Hero Section (Redesigned) -->
     <!-- Light-Theme Hero Section with Smoke Fade Image -->
@@ -297,7 +297,7 @@
           </div>
           <h2
             class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 leading-tight mb-4 tracking-tight">
-            Project domains we specialise in
+            Project domains we <span class="text-brand-gold">specialise in</span>
           </h2>
           <p class="font-sans text-slate-500 text-base md:text-lg max-w-2xl font-light">
             IEEE and non-IEEE projects across the technologies students and recruiters care about most.
@@ -445,8 +445,7 @@
           <div class="max-w-2xl">
             <h2 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-slate-950 leading-tight">
               Shared Lab <br />
-              <span
-                class="text-transparent bg-clip-text bg-linear-to-r from-brand-teal via-indigo-600 to-emerald-600">Resources.</span>
+              <span class="text-brand-gold">Resources.</span>
             </h2>
           </div>
           <div class="max-w-lg lg:text-right lg:pb-2">
@@ -660,7 +659,7 @@
 
         <div class="max-w-2xl mb-16">
           <h2 class="font-display font-black text-3xl sm:text-5xl text-slate-900 leading-tight mt-3">Built to bridge
-            theory and practice</h2>
+            theory and <span class="text-brand-gold">practice</span></h2>
           <p class="font-sans text-slate-500 mt-4">Every project track aligns with academic standards while staying
             relevant to physical-to-digital industry engineering.</p>
         </div>
@@ -786,7 +785,7 @@
     </section>
 
     <!-- Glassmorphic Student Proposal Submission Form -->
-    <section id="apply" class="py-24 relative overflow-hidden bg-white">
+    <section id="apply" class="order-6 py-24 relative overflow-hidden bg-white">
       <div class="absolute inset-0 pointer-events-none grid-dots opacity-40"></div>
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-brand-gold-light/10 rounded-full blur-[120px] pointer-events-none">
@@ -797,7 +796,7 @@
         <!-- Headings -->
         <div class="text-center max-w-2xl mx-auto mb-16">
           <h2 class="font-display font-black text-3xl sm:text-5xl text-slate-900 leading-tight">
-            Sponsorship Registration
+            Sponsorship <span class="text-brand-gold">Registration</span>
           </h2>
           <p class="font-sans text-slate-500 mt-4">
             Submit your final-year project proposal title, members details, and select your division track to apply for
@@ -924,8 +923,8 @@
       </div>
     </section>
 
-     <!-- Interactive FAQ Tabbed Console (Premium Redesign) -->
-    <section id="faq" class="py-28 border-b border-slate-200/60 bg-[#F8FAFC] relative overflow-hidden">
+    <!-- Interactive FAQ Tabbed Console (Premium Redesign) -->
+    <section id="faq" class="order-5 py-28 border-b border-slate-200/60 bg-[#FFFF] relative overflow-hidden">
       <!-- Background mesh gradients & blueprint layout overlay -->
       <div class="absolute inset-0 blueprint-grid opacity-3 pointer-events-none"></div>
       <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-teal/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -941,7 +940,7 @@
               Support Console
             </span>
             <h2 class="font-display font-black text-4xl sm:text-5xl text-slate-900 leading-tight tracking-tight mb-4">
-              Frequently asked questions.
+              Frequently asked <span class="text-brand-gold">questions.</span>
             </h2>
             <p class="text-sm text-slate-500 font-sans leading-relaxed mb-8 max-w-md">
               Select a question to inspect R&D details, codebase access guidelines, funding limits, or presentation support reviews.
@@ -1104,10 +1103,10 @@
     </section>
 
     <!-- Bottom High-Contrast Call to Action Section -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-6">
+    <section class="order-7 bg-[#F8FAFC]">
+      <div class="mx-auto">
         <div
-          class="relative overflow-hidden rounded-3xl bg-linear-to-br from-brand-teal to-brand-teal-hover px-6 py-16 text-center shadow-soft sm:px-16 border border-brand-teal/30">
+          class="relative overflow-hidden bg-linear-to-br from-brand-teal to-brand-teal-hover px-6 py-16 text-center shadow-soft sm:px-16 border border-brand-teal/30">
 
           <div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none"></div>
           <div
@@ -1116,7 +1115,7 @@
 
           <h2
             class="mx-auto max-w-2xl font-display font-black text-3xl sm:text-4xl text-white tracking-tight relative z-10">
-            Ready to start your final year project?
+            Ready to start your <span class="text-brand-gold">final year project?</span>
           </h2>
           <p class="mx-auto mt-4 max-w-xl text-sm text-slate-200 font-sans relative z-10 leading-relaxed">
             Speak directly to our R&D guides about your department requirements, choice of technology, and university
@@ -1201,6 +1200,7 @@
           <a href="#projects" class="footer-interactive-link hover:text-brand-teal transition-colors">PROJECTS</a>
           <a href="#values" class="footer-interactive-link hover:text-brand-teal transition-colors">VALUES</a>
           <a href="#specs" class="footer-interactive-link hover:text-brand-teal transition-colors">LAB RESOURCES</a>
+          <a href="#faq" class="footer-interactive-link hover:text-brand-teal transition-colors">FAQ</a>
           <a href="#apply" class="footer-interactive-link hover:text-brand-teal transition-colors">SUBMIT PROPOSAL</a>
         </div>
 
