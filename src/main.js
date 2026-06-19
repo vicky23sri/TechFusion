@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 0.2. DYNAMIC HOVER COPY COGNITIVE SYSTEM
   // ==========================================
   const defaultCopy = {
-    title: 'Architect Your <br /><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal via-indigo-600 to-emerald-600">Masterpiece.</span>',
+    title: 'Architect Your <br /><span class="text-transparent bg-clip-text bg-linear-to-r from-brand-teal via-indigo-600 to-emerald-600">Masterpiece.</span>',
     desc: 'Transform your final-year engineering ideas into industry-grade prototypes. We provide full funding, corporate lab hardware, and dedicated engineering mentorship.',
     features: [
       'Full hardware kit sponsorship',
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
       'Viva review & paper support',
       'Placement placement alignment'
     ],
-    hudTitle: 'CHAKRONIX CONSOLE // OVERVIEW',
+    hudTitle: 'CHAKRONIX CONSOLE OVERVIEW',
     hudStatus: 'MONITOR ACTIVE',
     leftTelemetry: 'INITIATIVE MATRIX',
     rightTelemetry: 'NOMINAL READY',
@@ -134,14 +134,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const deptCopy = {
     ece: {
-      title: 'ECE final year projects, <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-cyan-500">engineered to impress.</span>',
+      title: 'ECE final year projects, <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-teal to-cyan-500">engineered to impress.</span>',
       desc: 'Chakronix builds industry-ready IEEE & non-IEEE projects for ECE students — focusing on IoT, VLSI, and Embedded Systems with source code, hardware kits, documentation, and one-to-one mentoring from idea to viva.',
       features: [
         'Source Code & Docs',
         'IoT/ESP32 Hardware',
         '1-on-1 Mentoring'
       ],
-      hudTitle: 'CHAKRONIX CONSOLE // ECE_IOT',
+      hudTitle: 'CHAKRONIX CONSOLE ECE_IOT',
       hudStatus: 'SENSOR_LINK: NOMINAL',
       leftTelemetry: 'NODE_MCU ONLINE',
       rightTelemetry: 'DATA_SYNC 12ms',
@@ -149,14 +149,14 @@ document.addEventListener("DOMContentLoaded", () => {
       compLog: '[READY] Real-time sensor data streaming: ACTIVE.'
     },
     cse: {
-      title: 'CSE final year projects, <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-indigo-600">engineered to impress.</span>',
+      title: 'CSE final year projects, <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-teal to-indigo-600">engineered to impress.</span>',
       desc: 'Chakronix builds industry-ready IEEE & non-IEEE projects for CSE students — focusing on AI, Machine Learning, and Web Apps with source code, documentation, and one-to-one mentoring from idea to viva.',
       features: [
         'Source Code & Docs',
         'AI/ML Integrations',
         '1-on-1 Mentoring'
       ],
-      hudTitle: 'CHAKRONIX CONSOLE // CSE_WEB',
+      hudTitle: 'CHAKRONIX CONSOLE CSE_WEB',
       hudStatus: 'API_GATEWAY: STABLE',
       leftTelemetry: 'REACT_APP RUNNING',
       rightTelemetry: 'DB_LATENCY 8ms',
@@ -164,14 +164,14 @@ document.addEventListener("DOMContentLoaded", () => {
       compLog: '[READY] Application programming interfaces: ONLINE.'
     },
     eee: {
-      title: 'EEE final year projects, <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-emerald-600">engineered to impress.</span>',
+      title: 'EEE final year projects, <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-teal to-emerald-600">engineered to impress.</span>',
       desc: 'Chakronix builds industry-ready IEEE & non-IEEE projects for EEE students — focusing on Power Electronics, Smart Grids, and EV systems with source code, hardware, documentation, and one-to-one mentoring from idea to viva.',
       features: [
         'Source Code & Docs',
         'Grid/Motor Hardware',
         '1-on-1 Mentoring'
       ],
-      hudTitle: 'CHAKRONIX CONSOLE // EEE_GRID',
+      hudTitle: 'CHAKRONIX CONSOLE EEE_GRID',
       hudStatus: 'GRID_SYNC: 99.8%',
       leftTelemetry: 'POWER_METRICS LOADED',
       rightTelemetry: 'EFFICIENCY 96.2%',
@@ -284,12 +284,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Automatic slideshow variables
-  let activeDeptIndex = -1; // -1 is the initial default overview state
-  const depts = ["ece", "cse", "eee"];
+  let activeDeptIndex = 0; // Starts with EEE active on load
+  const depts = ["eee", "ece", "cse"];
   let isUserInteracting = false;
 
   // Sync initial tab highlights
-  switchActiveShowcase("ece");
+  switchActiveShowcase("eee");
 
   function showDepartment(dept) {
     activeDeptIndex = depts.indexOf(dept);
@@ -443,11 +443,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Glass navbar height, width & shadow/glow adjustment on scroll
     if (navbar) {
       if (window.scrollY > 20) {
-        navbar.classList.remove("top-6", "max-w-6xl", "bg-white/70", "border-slate-200/50", "shadow-premium");
-        navbar.classList.add("top-2", "max-w-5xl", "border-brand-teal/20", "shadow-[0_10px_30px_rgba(4,80,112,0.08)]");
+        navbar.classList.remove("top-6", "container", "bg-white/70", "border-slate-200/50", "shadow-premium");
+        navbar.classList.add("top-2", "max-w-7xl", "border-brand-teal/20", "shadow-[0_10px_30px_rgba(4,80,112,0.08)]");
       } else {
-        navbar.classList.remove("top-2", "max-w-5xl", "border-brand-teal/20", "shadow-[0_10px_30px_rgba(4,80,112,0.08)]");
-        navbar.classList.add("top-6", "max-w-6xl", "bg-white/70", "border-slate-200/50", "shadow-premium");
+        navbar.classList.remove("top-2", "max-w-7xl", "border-brand-teal/20", "shadow-[0_10px_30px_rgba(4,80,112,0.08)]");
+        navbar.classList.add("top-6", "container", "bg-white/70", "border-slate-200/50", "shadow-premium");
       }
     }
   });
@@ -746,52 +746,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function highlightLayer(layerId) {
     blueprintLayers.forEach((layer) => {
-      layer.style.opacity = "0.25";
-      layer.style.borderWidth = "1px";
-      layer.style.borderColor = "rgba(148, 163, 184, 0.4)";
-      layer.classList.remove("shadow-[0_4px_24px_rgba(11,83,117,0.25)]", "scale-105");
-
+      // Toggle active class for horizontal accordion panels
       if (layer.id === `blueprint-${layerId}`) {
-        layer.style.opacity = "0.95";
-        layer.style.borderWidth = "2.5px";
-        
+        layer.classList.add("active");
         if (layerId === "layer-die") {
-          layer.style.borderColor = "#0B5375";
-          layer.classList.add("shadow-[0_4px_24px_rgba(11,83,117,0.25)]", "scale-105");
+          layer.style.borderColor = "#045070";
+          layer.style.boxShadow = "0 10px 30px rgba(4, 80, 112, 0.25)";
         } else if (layerId === "layer-bus") {
-          layer.style.borderColor = "#E5A924";
-          layer.classList.add("shadow-[0_4px_24px_rgba(229,169,36,0.25)]", "scale-105");
+          layer.style.borderColor = "#F5B422";
+          layer.style.boxShadow = "0 10px 30px rgba(245, 180, 34, 0.25)";
         } else if (layerId === "layer-carrier") {
-          layer.style.borderColor = "#64748B";
-          layer.classList.add("shadow-[0_4px_24px_rgba(100,116,139,0.25)]", "scale-105");
+          layer.style.borderColor = "#059669";
+          layer.style.boxShadow = "0 10px 30px rgba(16, 185, 129, 0.25)";
+        } else if (layerId === "layer-robotics") {
+          layer.style.borderColor = "#4f46e5";
+          layer.style.boxShadow = "0 10px 30px rgba(79, 70, 229, 0.25)";
+        } else if (layerId === "layer-energy") {
+          layer.style.borderColor = "#d97706";
+          layer.style.boxShadow = "0 10px 30px rgba(217, 119, 6, 0.25)";
         }
+      } else {
+        layer.classList.remove("active");
+        layer.style.borderColor = "";
+        layer.style.boxShadow = "";
       }
     });
   }
 
   function resetLayers() {
     blueprintLayers.forEach((layer) => {
-      if (layer.id === "blueprint-layer-cover") {
-        layer.style.opacity = "0.6";
-        layer.style.borderWidth = "1px";
-        layer.style.borderColor = "rgba(148, 163, 184, 0.4)";
-      } else if (layer.id === "blueprint-layer-die") {
-        layer.style.opacity = "0.95";
-        layer.style.borderWidth = "2px";
-        layer.style.borderColor = "#0B5375";
-      } else if (layer.id === "blueprint-layer-bus") {
-        layer.style.opacity = "0.4";
-        layer.style.borderWidth = "1px";
-        layer.style.borderColor = "rgba(229, 169, 36, 0.6)";
-      } else if (layer.id === "blueprint-layer-carrier") {
-        layer.style.opacity = "0.45";
-        layer.style.borderWidth = "1px";
-        layer.style.borderColor = "#94A3B8";
-      }
-      layer.classList.remove("scale-105");
+      layer.classList.remove("active");
+      layer.style.borderColor = "";
+      layer.style.boxShadow = "";
     });
   }
 
+  // Set up bilateral triggers: left card hover/click controls accordion, and accordion hover controls left card
   specCards.forEach((card) => {
     const targetLayer = card.getAttribute("data-highlight-layer");
 
@@ -806,6 +796,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     card.addEventListener("mouseleave", () => {
+      const activeCard = document.querySelector(".spec-item-card.active");
+      if (activeCard) {
+        highlightLayer(activeCard.getAttribute("data-highlight-layer"));
+      } else {
+        resetLayers();
+      }
+    });
+  });
+
+  // Enable direct hover on accordion panels to highlight left side cards too
+  blueprintLayers.forEach((layer) => {
+    const layerId = layer.id.replace("blueprint-", "");
+
+    layer.addEventListener("mouseenter", () => {
+      highlightLayer(layerId);
+      const matchedCard = document.querySelector(`.spec-item-card[data-highlight-layer="${layerId}"]`);
+      if (matchedCard) {
+        specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
+        matchedCard.classList.add("active", "border-brand-teal/40", "bg-white");
+      }
+    });
+
+    layer.addEventListener("click", () => {
+      highlightLayer(layerId);
+      const matchedCard = document.querySelector(`.spec-item-card[data-highlight-layer="${layerId}"]`);
+      if (matchedCard) {
+        specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
+        matchedCard.classList.add("active", "border-brand-teal/40", "bg-white");
+      }
+    });
+
+    layer.addEventListener("mouseleave", () => {
       const activeCard = document.querySelector(".spec-item-card.active");
       if (activeCard) {
         highlightLayer(activeCard.getAttribute("data-highlight-layer"));
@@ -909,8 +931,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (spinnerIcon) spinnerIcon.classList.remove("hidden");
       
       if (diagScreen) diagScreen.innerHTML = "";
-      printToConsole(`// CHAKRONIX Feasibility Testing Terminal v2026.06`, "text-slate-500");
-      printToConsole(`// Checking hardware compatibility for student final-year proposal...`, "text-slate-500");
+      printToConsole(`CHAKRONIX Feasibility Testing Terminal v2026.06`, "text-slate-500");
+      printToConsole(`Checking hardware compatibility for student final-year proposal...`, "text-slate-500");
       printToConsole(`------------------------------------------------------------`, "text-brand-gold font-bold");
       
       setTimeout(() => {
@@ -1151,4 +1173,89 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrollSpyObserver = new IntersectionObserver(scrollSpyCallback, scrollSpyOptions);
   spySections.forEach(section => scrollSpyObserver.observe(section));
 
+  // ==========================================
+  // 9. COPY TO CLIPBOARD EMAIL TRIGGER
+  // ==========================================
+  const copyEmailBtn = document.getElementById("copy-email-btn");
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const email = "hello@chakronix.com";
+      navigator.clipboard.writeText(email).then(() => {
+        const tooltip = copyEmailBtn.querySelector(".copy-tooltip");
+        if (tooltip) {
+          tooltip.classList.add("show-tooltip");
+          setTimeout(() => {
+            tooltip.classList.remove("show-tooltip");
+          }, 2000);
+        }
+        if (typeof printToConsole === "function") {
+          printToConsole(`[COMMUNICATION] Email copied to clipboard: ${email}`, "text-brand-teal font-bold");
+        }
+      }).catch(err => {
+        console.error("Failed to copy text: ", err);
+      });
+    });
+  }
+
+  // ==========================================
+  // 10. INTERACTIVE FAQ TAB CONSOLE SWITCHER
+  // ==========================================
+  const faqTabBtns = document.querySelectorAll(".faq-tab-btn");
+  const faqAnswerPanes = document.querySelectorAll(".faq-answer-pane");
+  const faqTelemetryBadge = document.getElementById("faq-telemetry-badge");
+
+  const telemetryBadges = {
+    "1": "SUITABILITY",
+    "2": "DELIVERABLES",
+    "3": "GRANTS & BUDGET",
+    "4": "VIVA INDEX"
+  };
+
+  faqTabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const index = btn.getAttribute("data-faq-index");
+      
+      // Update buttons active status
+      faqTabBtns.forEach((b) => {
+        b.classList.remove("active", "border-brand-teal/20", "text-slate-900", "shadow-soft");
+        b.classList.add("border-slate-200/50", "bg-white/40", "text-slate-600");
+        const dot = b.querySelector("span:last-child");
+        if (dot) {
+          dot.classList.remove("bg-brand-teal");
+          dot.classList.add("bg-slate-300");
+        }
+      });
+      btn.classList.add("active", "border-brand-teal/20", "text-slate-900", "shadow-soft");
+      btn.classList.remove("border-slate-200/50", "bg-white/40", "text-slate-600");
+      const dot = btn.querySelector("span:last-child");
+      if (dot) {
+        dot.classList.add("bg-brand-teal");
+        dot.classList.remove("bg-slate-300");
+      }
+
+      // Show/hide answer panes with smooth fade-in
+      faqAnswerPanes.forEach((pane) => {
+        pane.classList.add("hidden");
+        pane.classList.remove("opacity-100");
+        pane.classList.add("opacity-0");
+      });
+
+      const targetPane = document.getElementById(`faq-answer-${index}`);
+      if (targetPane) {
+        targetPane.classList.remove("hidden");
+        // Trigger layout reflow for CSS opacity animation
+        void targetPane.offsetWidth;
+        targetPane.classList.add("opacity-100");
+        targetPane.classList.remove("opacity-0");
+      }
+
+      // Update badge
+      if (faqTelemetryBadge && telemetryBadges[index]) {
+        faqTelemetryBadge.textContent = telemetryBadges[index];
+      }
+    });
+  });
+
 });
+

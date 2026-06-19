@@ -418,23 +418,6 @@
   transition: color 300ms ease;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--color-brand-teal);
-  transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
-  transform: translateX(-50%);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 16px;
-}
-
 /* Cyber HUD target grids on top of showcase image */
 .hud-target-overlay {
   position: absolute;
@@ -498,4 +481,298 @@
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
 }
 
+/* Horizontal Image Accordion for Shared Lab Resources (Wilderness pattern) */
+.accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  height: 480px;
+}
 
+@media (min-width: 768px) {
+  .accordion-container {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.accordion-panel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  filter: grayscale(80%) opacity(60%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  transition: flex 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
+              filter 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.accordion-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.accordion-panel.active {
+  flex: 2.2;
+  filter: grayscale(0%) opacity(100%);
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .accordion-panel.active {
+    flex: 3.5;
+  }
+}
+
+.accordion-panel.active img {
+  transform: scale(1.04);
+}
+
+/* Rotated vertical title for collapsed state (matching WorldSection.jsx) */
+.accordion-vertical-title {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .accordion-vertical-title {
+    display: block;
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2rem;
+    transform: rotate(-90deg);
+    transform-origin: bottom left;
+    white-space: nowrap;
+    opacity: 0.75;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 1.5rem;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+    z-index: 5;
+  }
+  
+  .accordion-panel.active .accordion-vertical-title {
+    opacity: 0;
+    transform: rotate(-90deg) translateY(-20px);
+  }
+}
+
+/* Accordion Content Text Overlay */
+.accordion-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  color: white;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.accordion-panel.active .accordion-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accordion Specific Gradient Overlays */
+.accordion-content-die {
+  background: linear-gradient(to top, rgba(4, 80, 112, 0.95) 0%, rgba(4, 80, 112, 0.45) 55%, transparent 100%);
+}
+
+.accordion-content-bus {
+  background: linear-gradient(to top, rgba(135, 95, 3, 0.95) 0%, rgba(135, 95, 3, 0.45) 55%, transparent 100%);
+}
+
+.accordion-content-carrier {
+  background: linear-gradient(to top, rgba(6, 95, 70, 0.95) 0%, rgba(6, 95, 70, 0.45) 55%, transparent 100%);
+}
+
+.accordion-content-robotics {
+  background: linear-gradient(to top, rgba(79, 70, 229, 0.95) 0%, rgba(79, 70, 229, 0.45) 55%, transparent 100%);
+}
+
+.accordion-content-energy {
+  background: linear-gradient(to top, rgba(217, 119, 6, 0.95) 0%, rgba(217, 119, 6, 0.45) 55%, transparent 100%);
+}
+
+/* Accordion Description Animation */
+.accordion-desc {
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.accordion-panel.active .accordion-desc {
+  opacity: 0.95 !important;
+  transform: translateY(0) !important;
+  transition-delay: 200ms;
+}
+
+/* Accordion Badge */
+.accordion-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+/* Premium Light-Theme Footer Styling */
+.premium-footer {
+  position: relative;
+  background: radial-gradient(circle at top right, rgba(4, 80, 112, 0.04) 0%, transparent 60%),
+              radial-gradient(circle at bottom left, rgba(245, 180, 34, 0.05) 0%, transparent 60%),
+              #F8FAFC;
+}
+
+.footer-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.02),
+              0 2px 6px -1px rgba(15, 23, 42, 0.01);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(4, 80, 112, 0.2);
+  box-shadow: 0 16px 35px -6px rgba(4, 80, 112, 0.08);
+}
+
+/* Copy Confirmation Tooltip */
+.copy-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 8px);
+  background: #0F172A;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.copy-tooltip.show-tooltip {
+  opacity: 1;
+  transform: translate(-50%, -8px);
+}
+
+/* Custom interactive hover link line */
+.footer-interactive-link {
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-interactive-link:hover {
+  color: var(--color-brand-teal) !important;
+  transform: translateX(4px);
+}
+
+.footer-interactive-link::before {
+  content: '→';
+  font-family: var(--font-mono);
+  font-size: 10px;
+  opacity: 0;
+  margin-right: -8px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--color-brand-gold);
+}
+
+.footer-interactive-link:hover::before {
+  opacity: 1;
+  margin-right: 6px;
+}
+/* Brand Watermark outline */
+.footer-watermark {
+  position: absolute;
+  bottom: -20px;
+  right: 8%;
+  font-family: var(--font-display);
+  font-size: 10rem;
+  font-weight: 900;
+  color: rgba(4, 80, 112, 0.015);
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* Premium Social Buttons */
+.social-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.03);
+  color: #64748B;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+.social-icon-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: var(--color-brand-teal);
+  color: #FFFFFF;
+  border-color: var(--color-brand-teal);
+  box-shadow: 0 8px 16px -4px rgba(4, 80, 112, 0.25);
+}
+
+.social-icon-btn.linkedin-hover:hover {
+  background: #0077B5;
+  border-color: #0077B5;
+  box-shadow: 0 8px 16px -4px rgba(0, 119, 181, 0.25);
+}
+
+.social-icon-btn.twitter-hover:hover {
+  background: #0F172A;
+  border-color: #0F172A;
+  box-shadow: 0 8px 16px -4px rgba(15, 23, 42, 0.25);
+}
+
+.social-icon-btn.instagram-hover:hover {
+  background: linear-gradient(45deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%);
+  border-color: transparent;
+  color: #FFFFFF;
+  box-shadow: 0 8px 16px -4px rgba(220, 39, 67, 0.25);
+}
+
+/* Glass panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+  border-radius: 24px;
+}
