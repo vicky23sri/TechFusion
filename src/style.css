@@ -481,105 +481,288 @@
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
 }
 
-/* Horizontal Image Accordion for Shared Lab Resources (Wilderness pattern) */
+/* ============================================
+   Shared Lab Resources — Premium Image Accordion
+   Mobile: Vertical expanding strips
+   Desktop (md+): Horizontal expanding panels
+   ============================================ */
+
+/* --- Container --- */
 .accordion-container {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0;
   width: 100%;
-  height: 480px;
+  height: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12),
+              0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 @media (min-width: 768px) {
   .accordion-container {
     flex-direction: row;
     align-items: stretch;
+    height: 620px;
+    border-radius: 20px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.14),
+                0 4px 12px rgba(0, 0, 0, 0.06);
   }
 }
 
+/* --- Panel Base (Mobile-first) --- */
 .accordion-panel {
-  flex: 1;
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
   cursor: pointer;
-  filter: grayscale(80%) opacity(60%);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  transition: flex 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
-              filter 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
-              border-color 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
-              box-shadow 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+  height: 200px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  filter: none;
+  transition: height 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.5s ease,
+              flex 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.5s ease,
+              box-shadow 0.5s ease;
 }
 
+.accordion-panel:last-child {
+  border-bottom: none;
+}
+
+/* Dark overlay on collapsed mobile panels */
+.accordion-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.65) 100%);
+  z-index: 2;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+/* Colored left accent bar */
+.accordion-panel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  z-index: 15;
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+              opacity 0.4s ease,
+              box-shadow 0.4s ease;
+  opacity: 0.7;
+}
+
+#blueprint-layer-die::after { background: linear-gradient(to bottom, #22d3ee, #06b6d4, #045070); }
+#blueprint-layer-bus::after { background: linear-gradient(to bottom, #fde047, #f5b422, #b8860b); }
+#blueprint-layer-carrier::after { background: linear-gradient(to bottom, #34d399, #10b981, #059669); }
+#blueprint-layer-robotics::after { background: linear-gradient(to bottom, #a5b4fc, #818cf8, #4f46e5); }
+#blueprint-layer-energy::after { background: linear-gradient(to bottom, #fde68a, #fbbf24, #d97706); }
+
+/* Active panel: expand and reveal */
+.accordion-panel.active {
+  height: 480px;
+  filter: none;
+  z-index: 10;
+  border-bottom-color: transparent;
+}
+
+.accordion-panel.active::before {
+  opacity: 0;
+}
+
+.accordion-panel.active::after {
+  width: 6px;
+  opacity: 1;
+}
+
+#blueprint-layer-die.active::after { box-shadow: 0 0 18px rgba(6, 182, 212, 0.5); }
+#blueprint-layer-bus.active::after { box-shadow: 0 0 18px rgba(245, 180, 34, 0.5); }
+#blueprint-layer-carrier.active::after { box-shadow: 0 0 18px rgba(16, 185, 129, 0.5); }
+#blueprint-layer-robotics.active::after { box-shadow: 0 0 18px rgba(129, 140, 248, 0.5); }
+#blueprint-layer-energy.active::after { box-shadow: 0 0 18px rgba(251, 191, 36, 0.5); }
+
+/* Chevron indicator — hidden */
+.accordion-panel .accordion-chevron {
+  display: none;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(4px);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.4s ease,
+              background 0.3s ease;
+  opacity: 0.7;
+}
+
+.accordion-panel:hover .accordion-chevron {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.accordion-panel.active .accordion-chevron {
+  transform: translateY(-50%) rotate(180deg);
+  opacity: 0;
+}
+
+/* --- Panel Image --- */
 .accordion-panel img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.accordion-panel.active {
-  flex: 2.2;
-  filter: grayscale(0%) opacity(100%);
-  z-index: 10;
-}
-
-@media (min-width: 768px) {
-  .accordion-panel.active {
-    flex: 3.5;
-  }
+  position: absolute;
+  inset: 0;
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+              filter 0.6s ease;
+  filter: brightness(0.5) saturate(0.6);
 }
 
 .accordion-panel.active img {
-  transform: scale(1.04);
+  transform: scale(1.06);
+  filter: brightness(0.9) saturate(1.15);
 }
 
-/* Rotated vertical title for collapsed state (matching WorldSection.jsx) */
+/* --- Vertical Title (Mobile = horizontal label in strip) --- */
 .accordion-vertical-title {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: absolute;
+  top: 50%;
+  left: 1.5rem;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  opacity: 1;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.82rem;
+  z-index: 10;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
+.accordion-panel.active .accordion-vertical-title {
+  opacity: 0;
+  transform: translateY(-50%) translateX(-15px);
+}
+
+/* --- Desktop (md+) overrides --- */
 @media (min-width: 768px) {
+  .accordion-panel {
+    height: auto;
+    flex: 1;
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    filter: grayscale(70%) opacity(65%);
+    transition: flex 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
+                filter 0.7s cubic-bezier(0.25, 0.8, 0.25, 1),
+                border-color 0.7s ease,
+                box-shadow 0.7s ease;
+  }
+
+  .accordion-panel:last-child {
+    border-right: none;
+  }
+
+  /* Remove mobile accent bar on desktop */
+  .accordion-panel::after {
+    display: none;
+  }
+
+  /* Lighter desktop collapsed overlay */
+  .accordion-panel::before {
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.5) 0%, transparent 70%);
+    opacity: 1;
+  }
+
+  .accordion-panel.active {
+    flex: 4.0;
+    height: auto;
+    filter: grayscale(0%) opacity(100%);
+    box-shadow: 0 0 40px rgba(0,0,0,0.18);
+  }
+
+  .accordion-panel.active::before {
+    opacity: 0;
+  }
+
+  /* Hide mobile chevron on desktop */
+  .accordion-panel .accordion-chevron {
+    display: none;
+  }
+
+  /* Desktop image handling */
+  .accordion-panel img {
+    position: relative;
+    filter: none;
+  }
+
+  .accordion-panel.active img {
+    transform: scale(1.04);
+    filter: none;
+  }
+
+  /* Desktop vertical title (rotated) */
   .accordion-vertical-title {
     display: block;
     position: absolute;
+    top: auto;
     bottom: 2.5rem;
     left: 2rem;
     transform: rotate(-90deg);
     transform-origin: bottom left;
     white-space: nowrap;
-    opacity: 0.75;
-    color: rgba(255, 255, 255, 0.9);
-    font-family: var(--font-display);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.95);
     font-size: 1.5rem;
-    transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    pointer-events: none;
-    z-index: 5;
+    letter-spacing: 0.08em;
+    font-weight: 900;
+    text-shadow: none;
   }
-  
+
   .accordion-panel.active .accordion-vertical-title {
     opacity: 0;
     transform: rotate(-90deg) translateY(-20px);
   }
 }
 
-/* Accordion Content Text Overlay */
+/* --- Content Overlay (answers/details) --- */
 .accordion-content {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 1.5rem;
+  padding: 1.25rem 1.25rem 1rem;
   color: white;
-  transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
-              transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s,
+              transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s;
+  z-index: 5;
+}
+
+@media (min-width: 768px) {
+  .accordion-content {
+    padding: 1.5rem;
+  }
 }
 
 .accordion-panel.active .accordion-content {
@@ -587,33 +770,33 @@
   transform: translateY(0);
 }
 
-/* Accordion Specific Gradient Overlays */
+/* Gradient overlays per domain */
 .accordion-content-die {
-  background: linear-gradient(to top, rgba(4, 80, 112, 0.95) 0%, rgba(4, 80, 112, 0.45) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(4, 80, 112, 0.95) 0%, rgba(4, 80, 112, 0.5) 50%, transparent 100%);
 }
 
 .accordion-content-bus {
-  background: linear-gradient(to top, rgba(135, 95, 3, 0.95) 0%, rgba(135, 95, 3, 0.45) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(135, 95, 3, 0.95) 0%, rgba(135, 95, 3, 0.5) 50%, transparent 100%);
 }
 
 .accordion-content-carrier {
-  background: linear-gradient(to top, rgba(6, 95, 70, 0.95) 0%, rgba(6, 95, 70, 0.45) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(6, 95, 70, 0.95) 0%, rgba(6, 95, 70, 0.5) 50%, transparent 100%);
 }
 
 .accordion-content-robotics {
-  background: linear-gradient(to top, rgba(79, 70, 229, 0.95) 0%, rgba(79, 70, 229, 0.45) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(79, 70, 229, 0.95) 0%, rgba(79, 70, 229, 0.5) 50%, transparent 100%);
 }
 
 .accordion-content-energy {
-  background: linear-gradient(to top, rgba(217, 119, 6, 0.95) 0%, rgba(217, 119, 6, 0.45) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(217, 119, 6, 0.95) 0%, rgba(217, 119, 6, 0.5) 50%, transparent 100%);
 }
 
-/* Accordion Description Animation */
+/* Accordion Description Stagger Animation */
 .accordion-desc {
   opacity: 0 !important;
   transform: translateY(10px) !important;
-  transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .accordion-panel.active .accordion-desc {
@@ -633,6 +816,20 @@
   letter-spacing: 0.08em;
   border-radius: 6px;
   margin-bottom: 0.5rem;
+}
+
+/* Hide top metadata on mobile collapsed panels */
+@media (max-width: 767px) {
+  .accordion-meta {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .accordion-panel.active .accordion-meta {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 /* Premium Light-Theme Footer Styling */

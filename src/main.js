@@ -781,66 +781,91 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Set up bilateral triggers: left card hover/click controls accordion, and accordion hover controls left card
+  // Enable hover-first expansion on accordion panels (click fallback for touch)
+  // Default: first panel is always active when nothing is hovered
+  const accordionContainer = document.getElementById("chip-blueprint-container");
+  let defaultLayerId = "layer-die"; // first panel is default
+
+  function activateLayer(layerId) {
+    blueprintLayers.forEach((layer) => {
+      const lid = layer.id.replace("blueprint-", "");
+      if (lid === layerId) {
+        layer.classList.add("active");
+        // Sync left-side spec cards
+        const matchedCard = document.querySelector(`.spec-item-card[data-highlight-layer="${lid}"]`);
+        if (matchedCard) {
+          specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
+          matchedCard.classList.add("active", "border-brand-teal/40", "bg-white");
+        }
+        // Apply colored border/shadow
+        if (lid === "layer-die") {
+          layer.style.borderColor = "#045070";
+          layer.style.boxShadow = "0 10px 30px rgba(4, 80, 112, 0.25)";
+        } else if (lid === "layer-bus") {
+          layer.style.borderColor = "#F5B422";
+          layer.style.boxShadow = "0 10px 30px rgba(245, 180, 34, 0.25)";
+        } else if (lid === "layer-carrier") {
+          layer.style.borderColor = "#059669";
+          layer.style.boxShadow = "0 10px 30px rgba(16, 185, 129, 0.25)";
+        } else if (lid === "layer-robotics") {
+          layer.style.borderColor = "#4f46e5";
+          layer.style.boxShadow = "0 10px 30px rgba(79, 70, 229, 0.25)";
+        } else if (lid === "layer-energy") {
+          layer.style.borderColor = "#d97706";
+          layer.style.boxShadow = "0 10px 30px rgba(217, 119, 6, 0.25)";
+        }
+      } else {
+        layer.classList.remove("active");
+        layer.style.borderColor = "";
+        layer.style.boxShadow = "";
+      }
+    });
+  }
+
+  // Set up bilateral triggers: left card hover/click controls accordion
   specCards.forEach((card) => {
     const targetLayer = card.getAttribute("data-highlight-layer");
 
-    card.addEventListener("click", () => {
-      specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
-      card.classList.add("active", "border-brand-teal/40", "bg-white");
-      highlightLayer(targetLayer);
+    card.addEventListener("mouseenter", () => {
+      activateLayer(targetLayer);
     });
 
-    card.addEventListener("mouseenter", () => {
-      highlightLayer(targetLayer);
+    card.addEventListener("click", () => {
+      defaultLayerId = targetLayer;
+      specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
+      card.classList.add("active", "border-brand-teal/40", "bg-white");
+      activateLayer(targetLayer);
     });
 
     card.addEventListener("mouseleave", () => {
-      const activeCard = document.querySelector(".spec-item-card.active");
-      if (activeCard) {
-        highlightLayer(activeCard.getAttribute("data-highlight-layer"));
-      } else {
-        resetLayers();
-      }
+      activateLayer(defaultLayerId);
     });
   });
 
-  // Enable direct hover on accordion panels to highlight left side cards too
+  // Hover triggers on each accordion panel
   blueprintLayers.forEach((layer) => {
     const layerId = layer.id.replace("blueprint-", "");
 
     layer.addEventListener("mouseenter", () => {
-      highlightLayer(layerId);
-      const matchedCard = document.querySelector(`.spec-item-card[data-highlight-layer="${layerId}"]`);
-      if (matchedCard) {
-        specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
-        matchedCard.classList.add("active", "border-brand-teal/40", "bg-white");
-      }
+      activateLayer(layerId);
     });
 
+    // Click fallback for touch devices
     layer.addEventListener("click", () => {
-      highlightLayer(layerId);
-      const matchedCard = document.querySelector(`.spec-item-card[data-highlight-layer="${layerId}"]`);
-      if (matchedCard) {
-        specCards.forEach((c) => c.classList.remove("active", "border-brand-teal/40", "bg-white"));
-        matchedCard.classList.add("active", "border-brand-teal/40", "bg-white");
-      }
-    });
-
-    layer.addEventListener("mouseleave", () => {
-      const activeCard = document.querySelector(".spec-item-card.active");
-      if (activeCard) {
-        highlightLayer(activeCard.getAttribute("data-highlight-layer"));
-      } else {
-        resetLayers();
-      }
+      defaultLayerId = layerId;
+      activateLayer(layerId);
     });
   });
 
-  const activeSpec = document.querySelector(".spec-item-card.active");
-  if (activeSpec) {
-    highlightLayer(activeSpec.getAttribute("data-highlight-layer"));
+  // When mouse leaves the entire accordion container, revert to default
+  if (accordionContainer) {
+    accordionContainer.addEventListener("mouseleave", () => {
+      activateLayer(defaultLayerId);
+    });
   }
+
+  // Initialize: activate the first panel by default
+  activateLayer(defaultLayerId);
 
 
   // ==========================================

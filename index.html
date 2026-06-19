@@ -49,15 +49,15 @@
           <span
             class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-brand-teal scale-x-100 transition-transform duration-300 origin-left"></span>
         </a>
-        <a href="#values"
-          class="nav-link relative text-[11px] font-mono tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors group py-1">
-          VALUES
-          <span
-            class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-        </a>
         <a href="#specs"
           class="nav-link relative text-[11px] font-mono tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors group py-1">
           RESOURCES
+          <span
+            class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+        </a>
+        <a href="#values"
+          class="nav-link relative text-[11px] font-mono tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors group py-1">
+          VALUES
           <span
             class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
         </a>
@@ -113,17 +113,17 @@
           class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-brand-teal">
           <span class="hover:text-brand-teal transition-colors">PROJECTS</span>
         </a>
+        <a href="#specs"
+          class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
+          <span class="hover:text-brand-teal transition-colors">RESOURCES</span>
+        </a>
         <a href="#values"
           class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
           <span class="hover:text-brand-teal transition-colors">VALUES</span>
         </a>
-        <a href="#specs"
-          class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
-          <span class="hover:text-brand-teal transition-colors">LAB RESOURCES</span>
-        </a>
         <a href="#apply"
           class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
-          <span class="hover:text-brand-teal transition-colors">SUBMIT PROPOSAL</span>
+          <span class="hover:text-brand-teal transition-colors">PROPOSAL</span>
         </a>
         <a href="#faq"
           class="mobile-nav-link group py-2 flex flex-col items-center justify-center transition-transform active:scale-95 text-slate-600">
@@ -443,9 +443,6 @@
         <!-- Editorial Header (Asymmetrical Side-by-Side Design) -->
         <div class="relative z-10 mb-16 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <div class="max-w-2xl">
-            <span class="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-brand-teal block mb-3">
-              04 // Lab infrastructure
-            </span>
             <h2 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-slate-950 leading-tight">
               Shared Lab <br />
               <span
@@ -467,7 +464,7 @@
             <div id="blueprint-layer-die" class="blueprint-layer accordion-panel group" style="cursor: pointer;">
               <img src="/vlsi_project.png" alt="ASIC fabrication and VLSI lab environment" />
               <!-- Top Metadata -->
-              <div class="absolute top-6 left-6 z-20 flex flex-col gap-0.5">
+              <div class="accordion-meta absolute top-6 left-6 z-20 flex flex-col gap-0.5">
                 <span class="font-mono text-[9px] tracking-widest text-brand-teal uppercase font-bold">ECE</span>
                 <span
                   class="font-mono text-[8px] tracking-wider text-slate-300 opacity-0 group-[.active]:opacity-100 transition-opacity duration-500">12.871°
@@ -475,6 +472,10 @@
               </div>
               <!-- Vertical spine title (collapsed state) -->
               <div class="accordion-vertical-title">ASIC Fabrication</div>
+              <!-- Mobile chevron indicator -->
+              <div class="accordion-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
               <!-- Expanded content -->
               <div class="accordion-content accordion-content-die">
                 <span class="accordion-badge bg-brand-teal text-white">ASIC validation</span>
@@ -496,7 +497,7 @@
             <div id="blueprint-layer-bus" class="blueprint-layer accordion-panel group" style="cursor: pointer;">
               <img src="/eee_project.png" alt="Smart-grid and electrical power lab resource" />
               <!-- Top Metadata -->
-              <div class="absolute top-6 left-6 z-20 flex flex-col gap-0.5">
+              <div class="accordion-meta absolute top-6 left-6 z-20 flex flex-col gap-0.5">
                 <span class="font-mono text-[9px] tracking-widest text-brand-gold uppercase font-bold">EEE</span>
                 <span
                   class="font-mono text-[8px] tracking-wider text-slate-300 opacity-0 group-[.active]:opacity-100 transition-opacity duration-500">12.875°
@@ -504,6 +505,10 @@
               </div>
               <!-- Vertical spine title (collapsed state) -->
               <div class="accordion-vertical-title">Smart-Grid Bench</div>
+              <!-- Mobile chevron indicator -->
+              <div class="accordion-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
               <!-- Expanded content -->
               <div class="accordion-content accordion-content-bus">
                 <span class="accordion-badge bg-brand-gold text-slate-950">Power systems</span>
@@ -526,7 +531,7 @@
             <div id="blueprint-layer-carrier" class="blueprint-layer accordion-panel group" style="cursor: pointer;">
               <img src="/cse_project.png" alt="Edge AI compute and software deployment lab" />
               <!-- Top Metadata -->
-              <div class="absolute top-6 left-6 z-20 flex flex-col gap-0.5">
+              <div class="accordion-meta absolute top-6 left-6 z-20 flex flex-col gap-0.5">
                 <span class="font-mono text-[9px] tracking-widest text-emerald-500 uppercase font-bold">CSE</span>
                 <span
                   class="font-mono text-[8px] tracking-wider text-slate-300 opacity-0 group-[.active]:opacity-100 transition-opacity duration-500">12.879°
@@ -534,6 +539,10 @@
               </div>
               <!-- Vertical spine title (collapsed state) -->
               <div class="accordion-vertical-title">AI Firmware Array</div>
+              <!-- Mobile chevron indicator -->
+              <div class="accordion-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
               <!-- Expanded content -->
               <div class="accordion-content accordion-content-carrier">
                 <span class="accordion-badge bg-emerald-600 text-white">Edge compute</span>
@@ -557,7 +566,7 @@
               <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop"
                 alt="Industrial Robotic Arms and Kinematics" />
               <!-- Top Metadata -->
-              <div class="absolute top-6 left-6 z-20 flex flex-col gap-0.5">
+              <div class="accordion-meta absolute top-6 left-6 z-20 flex flex-col gap-0.5">
                 <span class="font-mono text-[9px] tracking-widest text-indigo-400 uppercase font-bold">MECH</span>
                 <span
                   class="font-mono text-[8px] tracking-wider text-slate-300 opacity-0 group-[.active]:opacity-100 transition-opacity duration-500">12.883°
@@ -565,6 +574,10 @@
               </div>
               <!-- Vertical spine title (collapsed state) -->
               <div class="accordion-vertical-title">Robotic Kinematics</div>
+              <!-- Mobile chevron indicator -->
+              <div class="accordion-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
               <!-- Expanded content -->
               <div class="accordion-content accordion-content-robotics">
                 <span class="accordion-badge bg-indigo-600 text-white">Robotics</span>
@@ -587,7 +600,7 @@
               <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1200&auto=format&fit=crop"
                 alt="Renewable Solar Energy Micro-grid Simulator" />
               <!-- Top Metadata -->
-              <div class="absolute top-6 left-6 z-20 flex flex-col gap-0.5">
+              <div class="accordion-meta absolute top-6 left-6 z-20 flex flex-col gap-0.5">
                 <span class="font-mono text-[9px] tracking-widest text-amber-500 uppercase font-bold">RENEWABLE</span>
                 <span
                   class="font-mono text-[8px] tracking-wider text-slate-300 opacity-0 group-[.active]:opacity-100 transition-opacity duration-500">12.887°
@@ -595,6 +608,10 @@
               </div>
               <!-- Vertical spine title (collapsed state) -->
               <div class="accordion-vertical-title">Solar Simulation</div>
+              <!-- Mobile chevron indicator -->
+              <div class="accordion-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
               <!-- Expanded content -->
               <div class="accordion-content accordion-content-energy">
                 <span class="accordion-badge bg-amber-600 text-white">Grid Power</span>
